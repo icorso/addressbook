@@ -1,0 +1,24 @@
+package ru.krtech.addressbook.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Map;
+
+/**
+ * Created by m.filippov on 08.04.16
+ */
+@Controller
+public class PersonController {
+
+    @RequestMapping("/person")
+    public String person(Map<String, Object> model, int id) {
+        model.put("id", id);
+        return "person";
+    }
+
+    @RequestMapping("/persons")
+    public String persons(Map<String, Object> model) {
+        return "persons";
+    }
+}
