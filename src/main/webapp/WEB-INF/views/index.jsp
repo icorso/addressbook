@@ -7,7 +7,7 @@
 <html lang="en">
 
 <body>
-	<a href="./users">Пользователи</a>
+	<a href="./persons">Пользователи</a>
 	<a href="./addresses">Адреса</a>
 </body>
 

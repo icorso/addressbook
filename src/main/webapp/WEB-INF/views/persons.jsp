@@ -7,7 +7,24 @@
 <html lang="en">
 
 <body>
-	users.jsp
+<table class="table table-hover">
+	<thead>
+	<tr>
+		<th>ID</th>
+		<th>Firstname</th>
+		<th>Lastname</th>
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach items="${persons}" var="person">
+		<tr>
+			<td>${person.getId()}</td>
+			<td>${person.getName()}</td>
+			<td>${person.getSurname()}</td>
+		</tr>
+	</c:forEach>
+	</tbody>
+</table>
 </body>
 
 </html>

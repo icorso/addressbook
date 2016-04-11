@@ -1,7 +1,7 @@
-package ru.krtech.addressbook.model.jpa.repository;
+package ru.krtech.addressbook.model.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.krtech.addressbook.model.jpa.entity.Person;
+import ru.krtech.addressbook.model.domain.Person;
 
 /**
  * Created by m.filippov on 08.04.16

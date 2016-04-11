@@ -1,4 +1,4 @@
-package ru.krtech.addressbook.model.jpa.entity;
+package ru.krtech.addressbook.model.domain;
 
 /**
  * Created by m.filippov on 08.04.16
@@ -14,6 +14,19 @@ public class Person {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     private String name;
     private String surname;
 
@@ -27,7 +40,7 @@ public class Person {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
+                "Customer[id=%d, name='%s', surname='%s']",
                 id, name, surname);
     }
 
