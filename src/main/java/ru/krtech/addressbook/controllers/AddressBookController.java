@@ -13,13 +13,8 @@ import java.util.Map;
 @Controller
 public class AddressBookController {
 
-    @Value("${application.message:Hello World}")
-    private String message = "Hello World";
-
     @RequestMapping("/")
     public String index(Map<String, Object> model) {
-        model.put("time", new Date());
-        model.put("message", this.message);
         return "index";
     }
 }
