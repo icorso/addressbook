@@ -2,42 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/webjars/bootstrap/3.3.6/css/bootstrap.css"
-          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.css}" rel="stylesheet" media="screen"/>
-    <link href="/webjars/jquery/2.2.3/jquery.min.js" th:href="@{/webjars/jquery/2.2.3/jquery.min.js}" rel="script"/>
+    <link href="/webjars/materialize/0.97.6/dist/css/materialize.min.css"
+          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}" rel="stylesheet" media="screen"/>
+    <link href="/webjars/materialize/0.97.6/dist/js/materialize.min.js"
+          th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}" rel="script"/>
 </head>
 
-<body style="margin: 20px 20px 20px 20px;">
-<script src="webjars/jquery/2.2.3/jquery.min.js"></script>
-<script src="webjars/bootstrap/3.3.6/js/bootstrap.js"></script>
+<body>
+<script src="webjars/materialize/0.97.6/dist/js/materialize.min.js"></script>
 
-<div th:include="fragments/header :: title">&nbsp;</div>
 <div th:include="fragments/header :: header">&nbsp;</div>
 
 <table class="table table-bordered table-striped">
         <thead>
         <tr>
-            <td>ID</td>
-            <td>Address ID</td>
-            <td>Name</td>
-            <td>Surname</td>
-            <td>Phone</td>
-            <td>Email</td>
-            <td>Address</td>
-            <td>Edit</td>
-            <td>Remove</td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="person : ${persons}">
             <td th:text="${person.id}">&nbsp;</td>
-            <td th:text="${person.address}">&nbsp;</td>
             <td th:text="${person.name}">&nbsp;</td>
             <td th:text="${person.surname}">&nbsp;</td>
             <td th:text="${person.phone}">&nbsp;</td>
             <td th:text="${person.email}">&nbsp;</td>
             <td>Address</td>
-            <td></td>
+            <td>
+                <a class="btn-flat teal lighten-5 btn">EDIT</a>
+                <a class="btn-flat red lighten-5 black-text btn">DELETE</a>
+            </td>
         </tr>
         </tbody>
 </table>

@@ -1,13 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
-
-<div class="page-header" th:fragment="title">
-    <h1>Address Book <small> Test task application</small></h1>
-</div>
-
-<div class="container-fluid" th:fragment="header">
-    <ul class="nav nav-pills">
-        <li role="presentation"><a href="./persons">Persons</a></li>
-        <li role="presentation"><a href="./addresses">Addresses</a></li>
-    </ul>
-</div>
+    <div th:fragment="header">
+        <nav>
+            <div class="nav-wrapper cyan darken-2">
+                <a href="/" class="brand-logo right">Address Book </a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="persons.html">Persons</a></li>
+                    <li><a href="addresses.html">Addresses</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 </html>

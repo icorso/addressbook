@@ -4,37 +4,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/webjars/materialize/0.97.6/dist/css/materialize.min.css"
           th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}" rel="stylesheet" media="screen"/>
-    <link href="/webjars/materialize/0.97.6/dist/js/materialize.js"
-          th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.js}" rel="script"/>
+    <link href="/webjars/materialize/0.97.6/dist/js/materialize.min.js"
+          th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}" rel="script"/>
 </head>
 
-<body style="margin: 20px 20px 20px 20px;">
-<script src="webjars/materialize/0.97.6/dist/js/materialize.js"></script>
+<body>
+<script src="webjars/materialize/0.97.6/dist/js/materialize.min.js"></script>
 
-<a class="waves-effect waves-light cyan darken-3 black-text">button</a>
+<div th:include="fragments/header :: header">&nbsp;</div>
 
 <table class="striped">
     <thead>
     <tr>
-        <th data-field="id">Id</th>
-        <th data-field="city">City</th>
-        <th data-field="region">Region</th>
-        <th data-field="street">Street</th>
-        <th data-field="house">House</th>
-        <th data-field="flat">Flat</th>
+        <th>Id</th>
+        <th>Person</th>
+        <th>City</th>
+        <th>Region</th>
+        <th>Street</th>
+        <th>House</th>
+        <th>Flat</th>
+        <th></th>
     </tr>
     </thead>
 
     <tbody>
         <tr th:each="address : ${addresses}">
             <td th:text="${address.id}">&nbsp;</td>
+            <td th:text="${address.person.surname} + ' ' + ${address.person.name}">&nbsp;</td>
             <td th:text="${address.city}">&nbsp;</td>
             <td th:text="${address.region}">&nbsp;</td>
             <td th:text="${address.street}">&nbsp;</td>
             <td th:text="${address.house}">&nbsp;</td>
             <td th:text="${address.flat}">&nbsp;</td>
-            <td>Address</td>
-            <td></td>
+            <td><a class="btn-flat teal lighten-5 btn">EDIT</a>
+                <a class="btn-flat red lighten-5 black-text btn">DELETE</a>
+            </td>
         </tr>
     </tbody>
 </table>

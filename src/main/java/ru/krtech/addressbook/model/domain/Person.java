@@ -17,10 +17,6 @@ public class Person {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="address_id")
-    private Address address;
-
     @NotNull
     private String name;
 
