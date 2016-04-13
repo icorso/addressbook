@@ -25,6 +25,7 @@ public class Person {
 
     private String patronimic;
 
+    @NotNull
     private String phone;
 
     @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)" +
@@ -52,6 +53,14 @@ public class Person {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPatronimic() {
+        return patronimic;
+    }
+
+    public Date getBirthday() {
+        return birthday;
     }
 
     protected Person() {}

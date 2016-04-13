@@ -30,7 +30,12 @@
     <tbody>
         <tr th:each="address : ${addresses}">
             <td th:text="${address.id}">&nbsp;</td>
-            <td th:text="${address.person.surname} + ' ' + ${address.person.name}">&nbsp;</td>
+            <td>
+                <a href="/person"
+                   th:href="@{/person(id=${address.person.id})}"
+                   th:text="${address.person.surname} + ' ' + ${address.person.name}">
+                </a>
+            </td>
             <td th:text="${address.city}">&nbsp;</td>
             <td th:text="${address.region}">&nbsp;</td>
             <td th:text="${address.street}">&nbsp;</td>
