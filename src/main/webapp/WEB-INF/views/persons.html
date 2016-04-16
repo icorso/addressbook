@@ -16,9 +16,11 @@
 <table class="table table-bordered table-striped">
         <thead>
         <tr>
+            <th></th>
             <th>ID</th>
-            <th>Name</th>
-            <th>Surname</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Middle Name</th>
             <th>Phone</th>
             <th>Email</th>
             <th>Address</th>
@@ -27,12 +29,14 @@
         </thead>
         <tbody>
         <tr th:each="person : ${persons}">
+            <td>&nbsp;</td>
             <td th:text="${person.id}">&nbsp;</td>
-            <td th:text="${person.name}">&nbsp;</td>
-            <td th:text="${person.surname}">&nbsp;</td>
+            <td th:text="${person.firstName}">&nbsp;</td>
+            <td th:text="${person.lastName}">&nbsp;</td>
+            <td th:text="${person.middleName}">&nbsp;</td>
             <td th:text="${person.phone}">&nbsp;</td>
             <td th:text="${person.email}">&nbsp;</td>
-            <td>Address</td>
+            <td th:text="${person.address}"></td>
             <td>
                 <a class="btn-flat teal lighten-5 btn">EDIT</a>
                 <a class="btn-flat red lighten-5 black-text btn">DELETE</a>

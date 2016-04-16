@@ -16,7 +16,8 @@
 <table class="striped">
     <thead>
     <tr>
-        <th>Id</th>
+        <th></th>
+        <th>ID</th>
         <th>Person</th>
         <th>City</th>
         <th>Region</th>
@@ -29,11 +30,12 @@
 
     <tbody>
         <tr th:each="address : ${addresses}">
-            <td th:text="${address.id}">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td th:text="${address.id}">address.id</td>
             <td>
                 <a href="/person"
                    th:href="@{/person(id=${address.person.id})}"
-                   th:text="${address.person.surname} + ' ' + ${address.person.name}">
+                   th:text="${address.person.lastName} + ' ' + ${address.person.firstName}">
                 </a>
             </td>
             <td th:text="${address.city}">&nbsp;</td>

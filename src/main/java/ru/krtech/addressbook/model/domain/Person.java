@@ -4,80 +4,102 @@ package ru.krtech.addressbook.model.domain;
  * Created by m.filippov on 08.04.16
  */
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-//import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Entity
 @Table(name="person")
 public class Person {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
-
-    @NotNull
-    private String name;
-
-    @NotNull
-    private String surname;
-
-    private String patronimic;
-
-    @NotNull
+    private String firstName;
+    private String lastName;
+    private String middleName;
     private String phone;
-
-    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)" +
-            "*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
-            message="{invalid.email}")
     private String email;
-
     private Date birthday;
+    private Address address;
 
+    public Person(){}
+
+    public Person(Person p, Address a){
+        this.firstName = p.getFirstName();
+        this.address = a;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getSurname() {
-        return surname;
+    @Column(name = "first_name")
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getPhone() {
         return phone;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public String getPatronimic() {
-        return patronimic;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getBirthday() {
         return birthday;
     }
 
-    protected Person() {}
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
-    public Person(Person p) {
-        this.id = p.id;
-        this.name = p.name;
-        this.surname = p.surname;
-        this.phone = p.phone;
-        this.email = p.email;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Person[id=%d, name='%s', surname='%s']",
-                id, name, surname);
+                "Person[id=%d, first_name='%s', last_name='%s']",
+                id, firstName, lastName);
     }
 
 }
