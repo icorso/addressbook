@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/webjars/materialize/0.97.6/dist/css/materialize.min.css"
+          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}" rel="stylesheet" media="screen"/>
+    <link href="/webjars/materialize/0.97.6/dist/js/materialize.min.js"
+          th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}" rel="script"/>
+</head>
+
+<body>
+<script src="webjars/materialize/0.97.6/dist/js/materialize.min.js"></script>
+
+<div th:include="fragments/header :: header">&nbsp;</div>
+
+<p th:text="${person}">[person]</p>
+<table>
+    <thead>
+    <tr>
+        <th data-field="id">Person</th>
+        <th data-field="name">Address</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>
+            <div class="row">
+                <form action="./persons/view.html" class="col s12" id="view-person-form" th:object="${person}">
+                    <input type="hidden" id="id" th:field="*{id}" />
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input disabled="disabled" id="first_name" type="text" class="grey-text text-darken-3" th:field="*{firstName}" />
+                            <label class="active" for="first_name">First Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input disabled="disabled" id="last_name" type="text" class="grey-text text-darken-3" th:field="*{lastName}" />
+                            <label class="active" for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input disabled="disabled" id="middle_name" type="text" class="grey-text text-darken-3" th:field="*{middleName}" />
+                            <label class="active" for="middle_name">Middle Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input disabled="disabled" id="phone" type="text" class="grey-text text-darken-3" th:field="*{phone}" />
+                            <label class="active" for="phone">Phone</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input disabled="disabled" id="email" type="text" class="grey-text text-darken-3" th:field="*{email}" />
+                            <label class="active" for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input disabled="disabled" id="birthday" type="text" class="grey-text text-darken-3" th:field="*{birthday}" />
+                            <label class="active" for="birthday">Birthday</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </td>
+        <td>
+            <div class="row">Address</div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

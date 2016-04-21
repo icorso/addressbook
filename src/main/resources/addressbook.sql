@@ -17,7 +17,7 @@ CREATE TABLE `person` (
   `last_name` varchar(30) NOT NULL,
   `middle_name` varchar(30) NOT NULL,
   `phone` varchar(15) DEFAULT NULL,
-  `email` varchar(15) DEFAULT NULL,
+  `email` varchar(25) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `address_fk` (`address_id`),

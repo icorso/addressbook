@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/webjars/materialize/0.97.6/dist/css/materialize.min.css"
+          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}" rel="stylesheet" media="screen"/>
+    <link href="/webjars/materialize/0.97.6/dist/js/materialize.min.js"
+          th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}" rel="script"/>
+</head>
+
+<body>
+<script src="webjars/materialize/0.97.6/dist/js/materialize.min.js"></script>
+
+<div th:include="fragments/header :: header">&nbsp;</div>
+
+<table>
+    <thead>
+    <tr>
+        <th data-field="id">Person</th>
+        <th data-field="name">Address</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>
+            <div class="row">
+                <form action="#" class="col s12" id="add-person-form"
+                      th:object="${person}"
+                      th:method="post"
+                      th:action="@{/persons/new}">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="first_name" type="text" th:field="*{firstName}" />
+                            <label class="active" for="first_name">First1 Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="last_name" type="text" th:field="*{lastName}" />
+                            <label class="active" for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="middle_name" type="text" th:field="*{middleName}" />
+                            <label class="active" for="middle_name">Middle Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="phone" type="text" th:field="*{phone}" />
+                            <label class="active" for="phone">Phone</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="email" type="email" th:field="*{email}" />
+                            <label class="active" for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="birthday" type="text" th:field="*{birthday}" />
+                            <label class="active" for="birthday">Birthday</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button class="btn-flat teal lighten-5 btn" type="submit" value="Submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </td>
+        <td>
+            <div class="row">Address</div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

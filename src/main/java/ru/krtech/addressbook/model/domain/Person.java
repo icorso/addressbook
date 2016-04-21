@@ -3,6 +3,9 @@ package ru.krtech.addressbook.model.domain;
 /**
  * Created by m.filippov on 08.04.16
  */
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,7 +19,10 @@ public class Person {
     private String middleName;
     private String phone;
     private String email;
+
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date birthday;
+
     private Address address;
 
     public Person(){}
@@ -45,6 +51,7 @@ public class Person {
         this.firstName = firstName;
     }
 
+    @Column(name = "last_name")
     public String getLastName() {
         return lastName;
     }
@@ -53,6 +60,7 @@ public class Person {
         this.lastName = lastName;
     }
 
+    @Column(name = "middle_name")
     public String getMiddleName() {
         return middleName;
     }
