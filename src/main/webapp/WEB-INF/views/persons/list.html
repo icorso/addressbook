@@ -13,7 +13,7 @@
 
 <div th:include="fragments/header :: header">&nbsp;</div>
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered striped">
         <thead>
         <tr>
             <th></th>
@@ -38,8 +38,10 @@
             <td th:text="${person.email}">&nbsp;</td>
             <td th:text="${person.address}"></td>
             <td>
-                <a class="btn-flat teal lighten-5 btn">EDIT</a>
-                <a class="btn-flat red lighten-5 black-text btn">DELETE</a>
+                <a class="btn-flat teal lighten-5 btn"
+                   th:href="@{/persons/{id}/edit(id=${person.id})}">EDIT</a>
+                <a class="btn-flat red lighten-5 black-text btn"
+                   th:href="@{/persons/{id}/delete(id=${person.id})}">DELETE</a>
             </td>
         </tr>
         </tbody>

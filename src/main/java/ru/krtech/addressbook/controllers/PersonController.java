@@ -17,7 +17,7 @@ import java.util.Map;
  * Created by m.filippov on 08.04.16
  */
 @Controller
-@RequestMapping(value = {"/persons"})
+@RequestMapping(value = {"/persons", "/persons/"})
 public class PersonController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class PersonController {
     public String initCreationForm(Model model) {
         Person owner = new Person();
         model.addAttribute(owner);
-        return "persons/new";
+        return "persons/addAndEdit";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -58,16 +58,23 @@ public class PersonController {
     public String initUpdatePersonForm(@PathVariable("id") int id, Model model) {
         Person person = this.personRepository.findOne((long) id);
         model.addAttribute(person);
-        return "persons/edit";
+        return "persons/addAndEdit";
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
     public String processUpdatePersonForm(@ModelAttribute(value="person") Person person, BindingResult result) {
         if (result.hasErrors()) {
-            return "persons/{id}/edit";
+            return "persons/addAndEdit";
         } else {
             this.personRepository.save(person);
             return "redirect:/persons/{id}";
         }
     }
+
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id) {
+        this.personRepository.delete((long) id);
+        return "redirect:/persons/";
+    }
+
 }

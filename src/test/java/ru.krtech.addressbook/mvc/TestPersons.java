@@ -15,6 +15,7 @@ import ru.krtech.addressbook.model.repository.AddressRepository;
 import ru.krtech.addressbook.model.repository.PersonRepository;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -39,10 +40,12 @@ public class TestPersons {
     @Test
     public void testPersons() throws Exception {
         String firstName = p.findAll().iterator().next().getFirstName();
-        this.mockMvc.perform(get("/persons"))
+        this.mockMvc.perform(get("/persons/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("persons/list"))
-                .andExpect(content().string(containsString(firstName)));
+                .andExpect(content().string(containsString(firstName)))
+                .andExpect(content().string(containsString("/persons/1/delete")))
+                .andExpect(content().string(containsString("/persons/1/edit")));
     }
 
     @Test
@@ -58,15 +61,17 @@ public class TestPersons {
     public void testPersonNew() throws Exception {
         this.mockMvc.perform(get("/persons/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("persons/new"))
-                .andExpect(content().string(containsString("method=\"post\"")));
+                .andExpect(view().name("persons/addAndEdit"))
+                .andExpect(content().string(
+                        not(containsString("<input type=\"hidden\" name=\"_method\" value=\"put\" />"))));
     }
 
     @Test
     public void testPersonEdit() throws Exception {
         this.mockMvc.perform(get("/persons/1/edit"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("persons/edit"))
-                .andExpect(content().string(containsString("method=\"put\"")));
+                .andExpect(view().name("persons/addAndEdit"))
+                .andExpect(content().string(containsString("<input type=\"hidden\" name=\"_method\" value=\"put\" />")));
     }
+
 }
