@@ -61,7 +61,7 @@ public class TestPersons {
     public void testPersonNew() throws Exception {
         this.mockMvc.perform(get("/persons/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("persons/addAndEdit"))
+                .andExpect(view().name("persons/manage"))
                 .andExpect(content().string(
                         not(containsString("<input type=\"hidden\" name=\"_method\" value=\"put\" />"))));
     }
@@ -70,7 +70,7 @@ public class TestPersons {
     public void testPersonEdit() throws Exception {
         this.mockMvc.perform(get("/persons/1/edit"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("persons/addAndEdit"))
+                .andExpect(view().name("persons/manage"))
                 .andExpect(content().string(containsString("<input type=\"hidden\" name=\"_method\" value=\"put\" />")));
     }
 

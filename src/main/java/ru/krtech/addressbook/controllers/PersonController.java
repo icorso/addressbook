@@ -4,13 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ru.krtech.addressbook.model.domain.Person;
+import ru.krtech.addressbook.model.repository.AddressRepository;
 import ru.krtech.addressbook.model.repository.PersonRepository;
 
-import javax.validation.Valid;
 import java.util.Map;
 
 /**
@@ -23,6 +25,9 @@ public class PersonController {
     @Autowired
     PersonRepository personRepository;
 
+    @Autowired
+    AddressRepository addressRepository;
+
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
     public ModelAndView showPerson(@PathVariable("id") int id) {
         ModelAndView mav = new ModelAndView("persons/view");
@@ -34,7 +39,7 @@ public class PersonController {
     public String initCreationForm(Model model) {
         Person owner = new Person();
         model.addAttribute(owner);
-        return "persons/addAndEdit";
+        return "persons/manage";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -58,13 +63,13 @@ public class PersonController {
     public String initUpdatePersonForm(@PathVariable("id") int id, Model model) {
         Person person = this.personRepository.findOne((long) id);
         model.addAttribute(person);
-        return "persons/addAndEdit";
+        return "persons/manage";
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
     public String processUpdatePersonForm(@ModelAttribute(value="person") Person person, BindingResult result) {
         if (result.hasErrors()) {
-            return "persons/addAndEdit";
+            return "persons/manage";
         } else {
             this.personRepository.save(person);
             return "redirect:/persons/{id}";
