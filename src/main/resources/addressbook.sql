@@ -7,7 +7,7 @@ CREATE TABLE `address` (
   `house` varchar(5) DEFAULT NULL,
   `flat` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `person`;
 CREATE TABLE `person` (
@@ -22,7 +22,9 @@ CREATE TABLE `person` (
   PRIMARY KEY (`id`),
   KEY `address_fk` (`address_id`),
   CONSTRAINT `address_fk` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 INSERT INTO `address` VALUES (1,'Gergran','Coldmane','Belihrdonore','1','2a'),(2,'Grungurn','Thunderbrand','Sternsteel','7b','20');
-INSERT INTO `person` VALUES (1,1,'Doldrom','Moltenmane','Firetoe','3894257','doldrom@wk.com','1958-12-01'),(2,2,'Bhelurus','Barleydust','Mountainbranch','348534878','bhelurus@wk.com','1971-02-21');
+INSERT INTO `person` VALUES (1,1,'Doldrom','Moltenmane','Firetoe','3894257','doldrom@wk.com','1958-12-01'),
+  (2,2,'Bhelurus','Barleydust','Mountainbranch','348534878','bhelurus@wk.com','1971-02-21'),
+  (3,NULL,'Joyurt','Otr','Tercous','987684953','bhelurus@wk.com','1987-12-30');

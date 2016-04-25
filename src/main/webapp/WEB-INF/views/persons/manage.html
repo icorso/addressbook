@@ -30,6 +30,7 @@
 
                     <div class="row">
                         <div class="input-field col s6">
+                            <input id="person.address" type="hidden" th:field="${person.address}"/>
                             <input id="first_name" type="text" class="validate" length="30" th:field="*{firstName}"/>
                             <label class="active" for="first_name">First Name</label>
                         </div>

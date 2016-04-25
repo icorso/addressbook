@@ -58,6 +58,16 @@ public class TestPersons {
     }
 
     @Test
+    public void testPersonViewNoAddress() throws Exception {
+        String firstName = p.findOne(3L).getFirstName();
+        this.mockMvc.perform(get("/persons/3"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("persons/view"))
+                .andExpect(content().string(containsString(firstName)))
+                .andExpect(content().string(containsString("Address Is Not Set")));
+    }
+
+    @Test
     public void testPersonNew() throws Exception {
         this.mockMvc.perform(get("/persons/new"))
                 .andExpect(status().isOk())
