@@ -24,11 +24,10 @@ import org.thymeleaf.templateresolver.UrlTemplateResolver;
 @EnableJpaRepositories("ru.krtech.addressbook.model.repository")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    private static final String VIEWS = "/WEB-INF/views/";
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/META-INF/resources/");
     }
 
     @Override
@@ -39,7 +38,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public TemplateResolver templateResolver() {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
-        templateResolver.setPrefix(VIEWS);
+        templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
         templateResolver.setCacheable(false);

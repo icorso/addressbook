@@ -1,17 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/webjars/materialize/0.97.6/dist/css/materialize.min.css"
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet" media="screen"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
           th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}" rel="stylesheet" media="screen"/>
-    <link href="/webjars/materialize/0.97.6/dist/js/materialize.min.js"
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"
           th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}" rel="script"/>
 </head>
 
 <body>
-<script src="webjars/materialize/0.97.6/dist/js/materialize.min.js"></script>
 
 <div th:include="fragments/header :: header">&nbsp;</div>
+<p>&nbsp;</p>
+<div class="row">
+    <div class="col s4">
+        <div class="center promo promo-example">
+            <a class="promo-caption cyan-text text-lighten-3" href="/persons/new/"
+                   th:href="@{/persons/new/}">
+                <i class="large material-icons #ffebee-text">perm_identity</i>
+                <h5>Add New Person</h5>
+            </a>
+            <p class="light center">We did most of the heavy lifting for you to provide a default stylings that
+                incorporate our custom components.</p>
+        </div>
+    </div>
+    <div class="col s4">
+        <div class="center promo promo-example">
+            <a class="promo-caption light-green-text text-lighten-2" href="/addresses/new/"
+               th:href="@{/addresses/}">
+                <i class="large material-icons">business</i>
+                <h5>Addresses</h5>
+            </a>
+            <p class="light center">By utilizing elements and principles of Material Design,
+                we were able to create a framework that focuses on User Experience.</p>
+        </div>
+    </div>
+    <div class="col s4">
+        <div class="center promo promo-example">
+            <a class="promo-caption red-text text-lighten-2" href="/search"
+               th:href="@{/search/}">
+                <i class="large material-icons red-text text-lighten-2">search</i>
+                <h5>Search</h5>
+            </a>
+            <p class="light center">We have provided detailed documentation as well as specific code examples to help
+                new users get started.</p>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
