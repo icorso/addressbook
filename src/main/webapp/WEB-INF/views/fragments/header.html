@@ -1,10 +1,14 @@
 <div th:fragment="header">
     <nav>
         <div class="nav-wrapper cyan darken-2">
-            <a href="/" class="brand-logo right">Address Book </a>
+            <a href="/" th:href="@{/}" class="brand-logo right">Address Book </a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="/persons/" th:href="@{/persons/}">Persons</a></li>
-                <li><a href="addresses.html">Addresses</a></li>
+                <li th:classappend="(${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/persons')})
+                ? 'active' : ''">
+                    <a href="/persons/" th:href="@{/persons/}">Persons</a></li>
+                <li th:classappend="(${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/addresses')})
+                ? 'active' : ''">
+                    <a href="addresses.html">Addresses</a></li>
             </ul>
         </div>
     </nav>
