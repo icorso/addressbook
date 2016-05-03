@@ -21,7 +21,7 @@ import org.thymeleaf.templateresolver.UrlTemplateResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"ru.krtech.addressbook"})
-@EnableJpaRepositories("ru.krtech.addressbook.model.repository")
+@EnableJpaRepositories("ru.krtech.addressbook.repository")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override

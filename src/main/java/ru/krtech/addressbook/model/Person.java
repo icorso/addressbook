@@ -1,4 +1,4 @@
-package ru.krtech.addressbook.model.domain;
+package ru.krtech.addressbook.model;
 
 /**
  * Created by m.filippov on 08.04.16

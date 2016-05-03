@@ -22,13 +22,48 @@
                                             th:method="post"
                                             th:action="@{${#httpServletRequest.servletPath}}">
                     <div class="input-field col s10">
-                        <input name="term" id="term" type="search" required="required"/>
+                        <input name="term" id="term" type="search" required="required" th:attr="value=${term}"/>
                         <label for="term"><i class="material-icons">search</i></label>
                     </div>
                     <div class="input-field col s2">
                         <button class="btn-floating grey" type="submit"><i class="material-icons">label_outline</i></button>
                     </div>
                 </form>
+    </div>
+    <div class="row">
+        <table class="table table-bordered striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Middle Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person : ${persons}">
+                <td>&nbsp;</td>
+                <td th:text="${person.id}">&nbsp;</td>
+                <td th:text="${person.firstName}">&nbsp;</td>
+                <td th:text="${person.lastName}">&nbsp;</td>
+                <td th:text="${person.middleName}">&nbsp;</td>
+                <td th:text="${person.phone}">&nbsp;</td>
+                <td th:text="${person.email}">&nbsp;</td>
+                <td th:text="${person.address}"></td>
+                <td>
+                    <a class="btn-flat teal lighten-5 btn"
+                       th:href="@{/persons/{id}/edit(id=${person.id})}">EDIT</a>
+                    <a class="btn-flat red lighten-5 black-text btn"
+                       th:href="@{/persons/{id}/delete(id=${person.id})}">DELETE</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

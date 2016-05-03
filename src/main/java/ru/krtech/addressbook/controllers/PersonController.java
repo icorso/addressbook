@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.krtech.addressbook.model.domain.Person;
-import ru.krtech.addressbook.model.repository.AddressRepository;
-import ru.krtech.addressbook.model.repository.PersonRepository;
+import ru.krtech.addressbook.model.Person;
+import ru.krtech.addressbook.repository.AddressRepository;
+import ru.krtech.addressbook.repository.PersonRepository;
 
 import java.util.Map;
 

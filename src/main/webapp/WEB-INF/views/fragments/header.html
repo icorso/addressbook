@@ -9,6 +9,9 @@
                 <li th:classappend="(${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/addresses')})
                 ? 'active' : ''">
                     <a href="addresses.html">Addresses</a></li>
+                <li th:classappend="(${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/search')})
+                ? 'active' : ''">
+                    <a href="/search/">Search</a></li>
             </ul>
         </div>
     </nav>
