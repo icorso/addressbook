@@ -18,12 +18,12 @@
 <div class="container">
     <div class="row">
                 <form action="#" id="search-form"
-                                            th:object="${term}"
+                                            th:object="${keyword}"
                                             th:method="post"
                                             th:action="@{${#httpServletRequest.servletPath}}">
                     <div class="input-field col s10">
-                        <input name="term" id="term" type="search" required="required" th:attr="value=${term}"/>
-                        <label for="term"><i class="material-icons">search</i></label>
+                        <input name="keyword" id="keyword" type="search" required="required" th:attr="value=${keyword}"/>
+                        <label for="keyword"><i class="material-icons">search</i></label>
                     </div>
                     <div class="input-field col s2">
                         <button class="btn-floating grey" type="submit"><i class="material-icons">label_outline</i></button>
@@ -41,7 +41,6 @@
                 <th>Middle Name</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Address</th>
                 <th></th>
             </tr>
             </thead>
@@ -54,12 +53,9 @@
                 <td th:text="${person.middleName}">&nbsp;</td>
                 <td th:text="${person.phone}">&nbsp;</td>
                 <td th:text="${person.email}">&nbsp;</td>
-                <td th:text="${person.address}"></td>
                 <td>
                     <a class="btn-flat teal lighten-5 btn"
-                       th:href="@{/persons/{id}/edit(id=${person.id})}">EDIT</a>
-                    <a class="btn-flat red lighten-5 black-text btn"
-                       th:href="@{/persons/{id}/delete(id=${person.id})}">DELETE</a>
+                       th:href="@{/persons/{id}(id=${person.id})}">VIEW</a>
                 </td>
             </tr>
             </tbody>

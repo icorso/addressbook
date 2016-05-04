@@ -24,10 +24,10 @@ public class SearchController {
     AddressRepository addressRepository;
 
     @RequestMapping(value = {"/"}, method = RequestMethod.POST)
-    public ModelAndView search(@RequestParam("term") String term) {
+    public ModelAndView search(@RequestParam("keyword") String keyword) {
         ModelAndView mav = new ModelAndView("search/view");
-        mav.addObject("term", term);
-        Iterable<Person> persons = personRepository.findAll();
+        mav.addObject("keyword", keyword);
+        Iterable<Person> persons = personRepository.getPersonsByKeyword(keyword);
         mav.addObject("persons", persons);
         return mav;
     }
