@@ -19,14 +19,11 @@ import java.util.Map;
  * Created by m.filippov on 08.04.16
  */
 @Controller
-@RequestMapping(value = {"/persons", "/persons/"})
+@RequestMapping(value = "/persons")
 public class PersonController {
 
     @Autowired
     PersonRepository personRepository;
-
-    @Autowired
-    AddressRepository addressRepository;
 
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
     public ModelAndView showPerson(@PathVariable("id") int id) {
@@ -37,8 +34,8 @@ public class PersonController {
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String initCreationForm(Model model) {
-        Person owner = new Person();
-        model.addAttribute(owner);
+        Person person = new Person();
+        model.addAttribute(person);
         return "persons/manage";
     }
 
@@ -53,7 +50,7 @@ public class PersonController {
         }
     }
 
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String persons(Map<String, Object> model) {
         model.put("persons", personRepository.findAll());
         return "persons/list";

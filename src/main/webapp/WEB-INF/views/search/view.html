@@ -30,8 +30,8 @@
                     </div>
                 </form>
     </div>
-    <div class="row">
-        <table class="table table-bordered striped">
+    <div class="row" th:unless="${#lists.isEmpty(persons)}">
+        <table class="responsive-table table-bordered striped col s10">
             <thead>
             <tr>
                 <th></th>

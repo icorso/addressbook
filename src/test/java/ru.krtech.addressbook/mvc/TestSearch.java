@@ -14,6 +14,7 @@ import ru.krtech.addressbook.Application;
 import ru.krtech.addressbook.repository.PersonRepository;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -45,12 +46,15 @@ public class TestSearch {
     }
 
     @Test
-    public void testSearchPost() throws Exception {
-        String term = "search string";
+    public void testSearchByLastName() throws Exception {
+        String keyword = "m";
+        String lastName = "Moltenmane";
         this.mockMvc.perform(post("/search/")
-                .param("term", term))
-                .andExpect(view().name("search/results"))
-                .andExpect(content().string(containsString(term)));
+                .param("keyword", keyword))
+                .andExpect(view().name("search/view"))
+                .andExpect(content().string(containsString(keyword)))
+                .andExpect(content().string(containsString(lastName)))
+                .andExpect(content().string(not(containsString("<p>No Results</p>"))));
     }
 
 }

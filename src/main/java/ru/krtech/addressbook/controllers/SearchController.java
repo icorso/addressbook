@@ -14,27 +14,24 @@ import ru.krtech.addressbook.repository.PersonRepository;
  * Created by m.filippov on 08.04.16
  */
 @Controller
-@RequestMapping(value = {"/search/","/search"})
+@RequestMapping(value = "/search")
 public class SearchController {
 
     @Autowired
     PersonRepository personRepository;
 
-    @Autowired
-    AddressRepository addressRepository;
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
+    public String search() {
+        return "search/view";
+    }
 
-    @RequestMapping(value = {"/"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
     public ModelAndView search(@RequestParam("keyword") String keyword) {
         ModelAndView mav = new ModelAndView("search/view");
         mav.addObject("keyword", keyword);
         Iterable<Person> persons = personRepository.getPersonsByKeyword(keyword);
         mav.addObject("persons", persons);
         return mav;
-    }
-
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-    public String initSearchForm() {
-        return "search/view";
     }
 
 }

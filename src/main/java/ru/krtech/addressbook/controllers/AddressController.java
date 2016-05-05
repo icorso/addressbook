@@ -2,29 +2,79 @@ package ru.krtech.addressbook.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import ru.krtech.addressbook.model.Address;
+import ru.krtech.addressbook.model.Person;
 import ru.krtech.addressbook.repository.AddressRepository;
+import ru.krtech.addressbook.repository.PersonRepository;
 
 import java.util.Map;
 
 /**
- * Created by m.filippov on 08.04.16
+ * Created by m.filippov on 05.05.16
  */
 @Controller
+@RequestMapping(value = "/addresses")
 public class AddressController {
 
     @Autowired
     AddressRepository addressRepository;
 
-    @RequestMapping("/address")
-    public String address(Map<String, Object> model, int id) {
-        model.put("id", id);
-        return "address";
-    }
+    @Autowired
+    PersonRepository personRepository;
 
-    @RequestMapping("/addresses")
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String addresses(Map<String, Object> model) {
         model.put("addresses", addressRepository.findAll());
-        return "addresses";
+        return "addresses/list";
     }
+
+    @RequestMapping(value = "/{pid}/new", method = RequestMethod.GET)
+    public String initCreationForm(@PathVariable("pid") int pid, Model model) {
+        Address address = new Address();
+        model.addAttribute(address);
+        model.addAttribute(pid);
+        return "addresses/manage";
+    }
+
+    @RequestMapping(value = "/{pid}/new", method = RequestMethod.POST)
+    public String processCreationForm(@ModelAttribute(value="address") Address address,
+                                      @ModelAttribute(value="pid") int pid,
+                                      BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/addresses/{pid}/new";
+        } else {
+            Address a = this.addressRepository.save(address);
+            Person p = this.personRepository.findOne((long) pid);
+            p.setAddress(a);
+            this.personRepository.save(p);
+            return "redirect:/addresses/";
+        }
+    }
+
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+    public String initUpdateAddressForm(@PathVariable("id") int id, Model model) {
+        Address address = this.addressRepository.findOne((long) id);
+        model.addAttribute(address);
+        return "addresses/manage";
+    }
+
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
+    public String processUpdateAddressForm(@ModelAttribute(value="address") Address address, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addresses/manage";
+        } else {
+            this.addressRepository.save(address);
+            return "redirect:/addresses/";
+        }
+    }
+
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id) {
+        this.addressRepository.delete((long) id);
+        return "redirect:/addresses/";
+    }
+
 }

@@ -19,8 +19,7 @@
 <table>
     <thead>
     <tr>
-        <th data-field="id">Person</th>
-        <th data-field="name">Address</th>
+        <th>Address</th>
     </tr>
     </thead>
 
@@ -28,46 +27,40 @@
     <tr>
         <td>
             <div class="row">
-                <form action="#" class="col s12" id="update-person-form"
-                      th:object="${person}"
-                      th:method="${person.id} eq 0 ? post : put"
+                <form action="#" class="col s12" id="update-address-form"
+                      th:object="${address}"
+                      th:method="${address.id} eq 0 ? post : put"
                       th:action="@{${#httpServletRequest.servletPath}}">
 
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="person.address" type="hidden" th:field="${person.address}"/>
-                            <input id="first_name" type="text" class="validate" length="30" th:field="*{firstName}"/>
-                            <label class="active" for="first_name">First Name</label>
+                            <input id="address.id" type="hidden" th:field="${address.id}"/>
+                            <input id="city" type="text" class="validate" length="30" th:field="*{city}"/>
+                            <label class="active" for="city">City</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="last_name" type="text" class="validate" length="30" th:field="*{lastName}"/>
-                            <label class="active" for="last_name">Last Name</label>
+                            <input id="region" type="text" class="validate" length="30" th:field="*{region}"/>
+                            <label class="active" for="region">Region</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="middle_name" type="text" class="validate" length="30" th:field="*{middleName}"/>
-                            <label class="active" for="middle_name">Middle Name</label>
+                            <input id="street" type="text" class="validate" length="30" th:field="*{street}"/>
+                            <label class="active" for="street">Street</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="phone" type="text" class="validate" length="15" th:field="*{phone}"/>
-                            <label class="active" for="phone">Phone</label>
+                            <input id="house" type="text" class="validate" length="5" th:field="*{house}"/>
+                            <label class="active" for="house">House</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="email" type="email" class="validate" length="25" th:field="*{email}"/>
-                            <label class="active" for="email">Email</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input id="birthday" type="date" class="datepicker" th:field="*{birthday}"/>
-                            <label class="active" for="birthday">Birthday (DD.MM.YYYY)</label>
+                            <input id="flat" type="text" class="validate" length="5" th:field="*{flat}"/>
+                            <label class="active" for="flat">Flat</label>
                         </div>
                     </div>
                     <div class="row">
@@ -77,8 +70,6 @@
                     </div>
                 </form>
             </div>
-
-            <div class="row">Address</div>
         </td>
     </tr>
     </tbody>

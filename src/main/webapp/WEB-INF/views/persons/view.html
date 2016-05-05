@@ -58,27 +58,27 @@
         </div>
     </form>
     <div class="col s6">
-        <div class="card blue-grey lighten-4" th:if="${person.address} != null">
+        <div class="card blue-grey lighten-5" th:if="${person.address} != null">
             <div class="card-content grey-text">
-                <span class="card-title">Person Address</span>
-                <p th:text="${person.address.city}"></p>
-                <p th:text="${person.address.region}"></p>
-                <p th:text="${person.address.street}"></p>
-                <p th:text="${person.address.house}"></p>
-                <p th:text="${person.address.flat}"></p>
+                <span class="card-title">Address</span>
+                <p>City: <span th:text="${person.address.city}"></span></p>
+                <p>Region: <span th:text="${person.address.region}"></span></p>
+                <p>Street: <span th:text="${person.address.street}"></span></p>
+                <p>House: <span th:text="${person.address.house}"></span></p>
+                <p>Apartment: <span th:text="${person.address.flat}"></span></p>
             </div>
             <div class="card-action">
                 <a href="#" th:href="@{/addresses/{id}/edit(id=${person.address.id})}">Edit</a>
                 <a href="#" th:href="@{/addresses/{aid}/delete(aid=${person.address.id})}">Delete</a>
             </div>
         </div>
-        <div class="card blue-grey lighten-4" th:unless="${person.address} != null">
+        <div class="card blue-grey lighten-5" th:unless="${person.address} != null">
             <div class="card-content grey-text">
-                <span class="card-title">Person Address</span>
-                <p>Address Is Not Set</p>
+                <span class="card-title">Address</span>
+                <p>Address Is Empty</p>
             </div>
             <div class="card-action">
-                <a href="#" th:href="@{/addresses/new}">Add Address</a>
+                <a href="#" th:href="@{/addresses/{id}/new(id=${person.id})}">Add Address</a>
             </div>
         </div>
     </div>

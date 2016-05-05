@@ -40,7 +40,26 @@ public class TestAddresses {
         String city = ar.findAll().iterator().next().getCity();
         this.mockMvc.perform(get("/addresses"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("addresses"))
+                .andExpect(view().name("addresses/list"))
                 .andExpect(content().string(containsString(city)));
     }
+
+    @Test
+    public void testAddressesNew() throws Exception {
+        this.mockMvc.perform(get("/addresses/1/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("addresses/manage"))
+                .andExpect(content().string(
+                        containsString("<input id=\"address.id\" type=\"hidden\" name=\"id\" value=\"0\" />"))
+                );
+    }
+
+    @Test
+    public void testAddressesEdit() throws Exception {
+        this.mockMvc.perform(get("/addresses/1/edit"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("addresses/manage"))
+                .andExpect(content().string(containsString("")));
+    }
+
 }
