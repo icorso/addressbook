@@ -38,7 +38,8 @@
             <td th:text="${address.street}">&nbsp;</td>
             <td th:text="${address.house}">&nbsp;</td>
             <td th:text="${address.flat}">&nbsp;</td>
-            <td th:text="${address.person.firstName} + ' ' + ${address.person.lastName} + ' ' + ${address.person.middleName}|">&nbsp;</td>
+            <td th:if="${address.person} == null">No Person Specified</td>
+            <td th:if="${address.person} != null" th:text="${address.person.firstName} + ' ' + ${address.person.lastName} + ' ' + ${address.person.middleName}|">&nbsp;</td>
             <td>
                 <a class="btn-flat teal lighten-5 btn" th:href="@{/addresses/{id}/edit(id=${address.id})}">EDIT</a>
                 <a class="btn-flat red lighten-5 black-text btn" th:href="@{/addresses/{id}/delete(id=${address.id})}">DELETE</a>

@@ -18,9 +18,10 @@
 
 <table>
     <thead>
-    <tr>
-        <th>Address</th>
-    </tr>
+        <tr>
+            <th th:if="${address.id} eq 0">&nbsp;&nbsp;New Address</th>
+            <th th:unless="${address.id} eq 0">&nbsp;&nbsp;Edit Address</th>
+        </tr>
     </thead>
 
     <tbody>
@@ -38,8 +39,8 @@
                             <input id="city" type="text" class="validate" length="30" th:field="*{city}"/>
                             <label class="active" for="city">City</label>
                         </div>
-                    </div>
-                    <div class="row">
+                    <!--</div>-->
+                    <!--<div class="row">-->
                         <div class="input-field col s6">
                             <input id="region" type="text" class="validate" length="30" th:field="*{region}"/>
                             <label class="active" for="region">Region</label>
@@ -50,14 +51,13 @@
                             <input id="street" type="text" class="validate" length="30" th:field="*{street}"/>
                             <label class="active" for="street">Street</label>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="input-field col s6">
                             <input id="house" type="text" class="validate" length="5" th:field="*{house}"/>
                             <label class="active" for="house">House</label>
                         </div>
                     </div>
                     <div class="row">
+                        <div class="input-field col s6"></div>
                         <div class="input-field col s6">
                             <input id="flat" type="text" class="validate" length="5" th:field="*{flat}"/>
                             <label class="active" for="flat">Flat</label>

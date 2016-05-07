@@ -38,12 +38,20 @@
             <td th:text="${person.middleName}">&nbsp;</td>
             <td th:text="${person.phone}">&nbsp;</td>
             <td th:text="${person.email}">&nbsp;</td>
-            <td th:text="${person.address}"></td>
+            <td>
+                <div class="container" th:if="${person.address != null}" th:text="${person.address.city} + ', '
+                    + ${person.address.region} + ', '
+                    + ${person.address.house} + ' '
+                    + ${person.address.street} + ' st., app.'
+                    + ${person.address.flat}">City, Region, 1 Street, app.2
+                </div>
+                <div class="container" th:if="${person.address eq null}">
+                    Address Is Not Specified
+                </div>
+            </td>
             <td>
                 <a class="btn-flat teal lighten-5 btn"
-                   th:href="@{/persons/{id}/edit(id=${person.id})}">EDIT</a>
-                <a class="btn-flat red lighten-5 black-text btn"
-                   th:href="@{/persons/{id}/delete(id=${person.id})}">DELETE</a>
+                   th:href="@{/persons/{id}(id=${person.id})}">DETAILS</a>
             </td>
         </tr>
         </tbody>

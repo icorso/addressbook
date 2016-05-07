@@ -21,7 +21,7 @@ CREATE TABLE `person` (
   `birthday` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `address_fk` (`address_id`),
-  CONSTRAINT `address_fk` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `address_fk` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 INSERT INTO `address` VALUES (1,'Gergran','Coldmane','Belihrdonore','1','2a'),(2,'Grungurn','Thunderbrand','Sternsteel','7b','20');

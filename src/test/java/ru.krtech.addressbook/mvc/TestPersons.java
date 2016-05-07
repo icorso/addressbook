@@ -46,7 +46,8 @@ public class TestPersons {
                 .andExpect(content().string(containsString(firstName)))
                 .andExpect(content().string(containsString("/persons/1/delete")))
                 .andExpect(content().string(containsString("/persons/1/edit")))
-                .andExpect(content().string(containsString("<li class=\"active\"")));
+                .andExpect(content().string(containsString("<li class=\"active\"")))
+                .andExpect(content().string(containsString("Add person")));
     }
 
     @Test

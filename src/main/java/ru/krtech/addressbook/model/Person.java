@@ -27,11 +27,6 @@ public class Person {
 
     public Person(){}
 
-    public Person(Person p, Address a){
-        this.firstName = p.getFirstName();
-        this.address = a;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
@@ -93,7 +88,7 @@ public class Person {
         this.birthday = birthday;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "address_id")
     public Address getAddress() {
         return address;

@@ -14,6 +14,7 @@ import ru.krtech.addressbook.Application;
 import ru.krtech.addressbook.repository.AddressRepository;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -41,7 +42,8 @@ public class TestAddresses {
         this.mockMvc.perform(get("/addresses"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("addresses/list"))
-                .andExpect(content().string(containsString(city)));
+                .andExpect(content().string(containsString(city)))
+                .andExpect(content().string(not(containsString("Add person"))));
     }
 
     @Test

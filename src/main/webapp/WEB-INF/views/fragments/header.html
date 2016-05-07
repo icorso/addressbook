@@ -12,6 +12,8 @@
                 <li th:classappend="(${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/search')})
                 ? 'active' : ''">
                     <a href="/search/" th:href="@{/search/}">Search</a></li>
+                <li th:if="(${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/persons')})">
+                    <a class="btn-flat teal lighten-5 btn" href="/persons/new" th:href="@{/persons/new}">Add person</a></li>
             </ul>
         </div>
     </nav>
