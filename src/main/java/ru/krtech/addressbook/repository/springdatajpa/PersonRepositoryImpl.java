@@ -22,7 +22,9 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
     @SuppressWarnings("unchecked")
     public List<Person> getPersonsByKeyword(String keyword) {
         Query query = this.em.createQuery("SELECT DISTINCT person FROM Person person " +
-                "WHERE person.lastName LIKE :keyword OR person.phone LIKE :keyword");
+                "LEFT JOIN FETCH person.address as address " +
+                "WHERE person.firstName LIKE :keyword OR person.lastName LIKE :keyword OR person.phone LIKE :keyword " +
+                "OR address.city LIKE :keyword OR address.region LIKE :keyword OR address.street LIKE :keyword");
         query.setParameter("keyword", "%" + keyword + "%");
         return query.getResultList();
     }
