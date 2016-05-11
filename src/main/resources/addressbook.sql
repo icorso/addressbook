@@ -3,7 +3,7 @@ CREATE TABLE `address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `city` varchar(30) NOT NULL,
   `region` varchar(30) NOT NULL,
-  `street` varchar(30) DEFAULT NULL,
+  `street` varchar(30) NOT NULL,
   `house` varchar(5) DEFAULT NULL,
   `flat` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`id`)

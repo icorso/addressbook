@@ -4,17 +4,33 @@ package ru.krtech.addressbook.model;
  * Created by m.filippov on 12.04.16
  */
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="address")
 public class Address {
 
     private long id;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String city;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String region;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String street;
+
+    @Size(max=5)
     private String house;
+
+    @Size(max=5)
     private String flat;
+
     private Person person;
 
     public Address(){}

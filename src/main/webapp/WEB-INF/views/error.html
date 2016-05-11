@@ -12,8 +12,11 @@
             th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}"></script>
 </head>
 <body>
-
-<div th:include="fragments/header :: header">&nbsp;</div>
-<h5 th:text="${exception}">exception</h5>
+    <div th:include="fragments/header :: header">&nbsp;</div>
+    <div class="container">
+        <br/>
+        <h5 th:text="'Response status: ' + ${status}">exception</h5>
+        <h5 th:text="'Exception: ' + ${exception}">attrs</h5>
+    </div>
 </body>
 </html>

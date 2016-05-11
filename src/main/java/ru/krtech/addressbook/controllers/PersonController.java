@@ -13,6 +13,7 @@ import ru.krtech.addressbook.model.Person;
 import ru.krtech.addressbook.repository.AddressRepository;
 import ru.krtech.addressbook.repository.PersonRepository;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 /**
@@ -40,14 +41,14 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String processCreationForm(@ModelAttribute(value="person") Person person,
-                                      BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "redirect:/persons/new";
-        } else {
-            Person p = this.personRepository.save(person);
-            return "redirect:/persons/" + p.getId();
+    public String processCreationForm(@Valid @ModelAttribute(value="person") Person person,
+                                      BindingResult result) {
+        if (result.hasErrors()) {
+            return "persons/manage";
         }
+
+        Person p = this.personRepository.save(person);
+        return "redirect:/persons/" + p.getId();
     }
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
@@ -64,7 +65,8 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-    public String processUpdatePersonForm(@ModelAttribute(value="person") Person person, BindingResult result) {
+    public String processUpdatePersonForm(@Valid @ModelAttribute(value="person") Person person,
+                                          BindingResult result) {
         if (result.hasErrors()) {
             return "persons/manage";
         } else {

@@ -7,6 +7,8 @@ package ru.krtech.addressbook.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -14,10 +16,23 @@ import java.util.Date;
 public class Person {
 
     private long id;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String firstName;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String lastName;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String middleName;
+
+    @Size(max=15)
     private String phone;
+
+    @Size(max=25)
     private String email;
 
     @DateTimeFormat(pattern = "dd.MM.yyyy")

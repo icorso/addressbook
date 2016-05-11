@@ -34,32 +34,44 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="person.address" type="hidden" th:field="${person.address}"/>
-                                <input id="first_name" type="text" class="validate" length="30" th:field="*{firstName}"/>
-                                <label class="active" for="first_name">First Name</label>
+                                <input id="first_name" type="text" th:field="*{firstName}"/>
+                                <label class="active" for="first_name"><span class="red-text">* </span>First Name</label>
+                                <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('firstName')}"
+                                      th:errors="*{firstName}">error</span>
                             </div>
                             <div class="input-field col s6">
-                                <input id="last_name" type="text" class="validate" length="30" th:field="*{lastName}"/>
-                                <label class="active" for="last_name">Last Name</label>
+                                <input id="last_name" type="text" th:field="*{lastName}"/>
+                                <label class="active" for="last_name"><span class="red-text">* </span>Last Name</label>
+                                <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('lastName')}"
+                                      th:errors="*{lastName}">error</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="middle_name" type="text" class="validate" length="30" th:field="*{middleName}"/>
-                                <label class="active" for="middle_name">Middle Name</label>
+                                <input id="middle_name" type="text" th:field="*{middleName}"/>
+                                <label class="active" for="middle_name"><span class="red-text">* </span>Middle Name</label>
+                                <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('middleName')}"
+                                      th:errors="*{middleName}">error</span>
                             </div>
                             <div class="input-field col s6">
-                                <input id="phone" type="text" class="validate" length="15" th:field="*{phone}"/>
+                                <input id="phone" type="text" th:field="*{phone}"/>
                                 <label class="active" for="phone">Phone</label>
+                                <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('phone')}"
+                                      th:errors="*{phone}">error</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="email" type="email" class="validate" length="25" th:field="*{email}"/>
+                                <input id="email" type="email" th:field="*{email}"/>
                                 <label class="active" for="email">Email</label>
+                                <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('email')}"
+                                      th:errors="*{email}">error</span>
                             </div>
                             <div class="input-field col s6">
                                 <input id="birthday" type="date" class="datepicker" th:field="*{birthday}"/>
                                 <label class="active" for="birthday">Birthday (DD.MM.YYYY)</label>
+                                <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('birthday')}"
+                                      th:errors="*{birthday}">error</span>
                             </div>
                         </div>
                         <div class="row">

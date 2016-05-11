@@ -10,6 +10,7 @@ import ru.krtech.addressbook.model.Person;
 import ru.krtech.addressbook.repository.AddressRepository;
 import ru.krtech.addressbook.repository.PersonRepository;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 /**
@@ -40,18 +41,18 @@ public class AddressController {
     }
 
     @RequestMapping(value = "/{pid}/new", method = RequestMethod.POST)
-    public String processCreationForm(@ModelAttribute(value="address") Address address,
-                                      @ModelAttribute(value="pid") int pid,
-                                      BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "redirect:/addresses/{pid}/new";
-        } else {
-            Address a = this.addressRepository.save(address);
-            Person p = this.personRepository.findOne((long) pid);
-            p.setAddress(a);
-            this.personRepository.save(p);
-            return "redirect:/addresses/";
+    public String processCreationForm(@Valid @ModelAttribute(value="address") Address address,
+                                      BindingResult result,
+                                      @ModelAttribute(value="pid") int pid) {
+        if (result.hasErrors()) {
+            return "addresses/manage";
         }
+
+        Address a = this.addressRepository.save(address);
+        Person p = this.personRepository.findOne((long) pid);
+        p.setAddress(a);
+        this.personRepository.save(p);
+        return "redirect:/addresses/";
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
@@ -62,13 +63,13 @@ public class AddressController {
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-    public String processUpdateAddressForm(@ModelAttribute(value="address") Address address, BindingResult result) {
+    public String processUpdateAddressForm(@Valid @ModelAttribute(value="address") Address address,
+                                           BindingResult result) {
         if (result.hasErrors()) {
             return "addresses/manage";
-        } else {
-            this.addressRepository.save(address);
-            return "redirect:/addresses/";
         }
+        this.addressRepository.save(address);
+        return "redirect:/addresses/";
     }
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
