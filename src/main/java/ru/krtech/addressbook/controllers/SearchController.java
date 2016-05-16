@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.krtech.addressbook.model.Person;
-import ru.krtech.addressbook.repository.AddressRepository;
 import ru.krtech.addressbook.repository.PersonRepository;
 
 /**

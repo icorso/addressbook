@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ru.krtech.addressbook.Application;
-import ru.krtech.addressbook.repository.AddressRepository;
 import ru.krtech.addressbook.repository.PersonRepository;
 
 import static org.hamcrest.CoreMatchers.containsString;

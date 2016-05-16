@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ru.krtech.addressbook.model.Person;
-import ru.krtech.addressbook.repository.AddressRepository;
 import ru.krtech.addressbook.repository.PersonRepository;
 
 import javax.validation.Valid;
