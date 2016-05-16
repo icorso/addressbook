@@ -13,6 +13,7 @@
                 <p>First name: <span class="black-text" th:text="${person.firstName}"></span></p>
                 <p>Last name: <span class="black-text" th:text="${person.lastName}"></span></p>
                 <p>Middle name: <span class="black-text" th:text="${person.middleName}"></span></p>
+                <p>Birthday: <span class="black-text" th:text="${#calendars.format(person.birthday,'dd MMMM yyyy')}"></span></p>
                 <p>Phone: <span class="black-text" th:text="${person.phone}"></span></p>
                 <p>Email: <span class="black-text" th:text="${person.email}"></span></p>
             </div>
