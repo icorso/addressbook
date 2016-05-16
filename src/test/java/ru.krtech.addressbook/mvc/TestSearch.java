@@ -38,7 +38,7 @@ public class TestSearch {
     }
 
     @Test
-    public void testSearchGet() throws Exception {
+    public void testSearchForm() throws Exception {
         this.mockMvc.perform(get("/search/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("search/view"))
@@ -48,13 +48,27 @@ public class TestSearch {
     @Test
     public void testSearchByLastName() throws Exception {
         String keyword = "m";
-        String lastName = "Moltenmane";
+        String lastName1 = "Moltenmane";
+        String lastName2 = "Barleydust";
         this.mockMvc.perform(post("/search/")
                 .param("keyword", keyword))
                 .andExpect(view().name("search/view"))
                 .andExpect(content().string(containsString(keyword)))
-                .andExpect(content().string(containsString(lastName)))
-                .andExpect(content().string(not(containsString("<p>No Results</p>"))));
+                .andExpect(content().string(containsString(lastName1)))
+                .andExpect(content().string(not(containsString(lastName2))));
+    }
+
+    @Test
+    public void testSearchByStreet() throws Exception {
+        String keyword = "steel";
+        String firstName1 = "Bhelurus";
+        String firstName2 = "Doldrom";
+        this.mockMvc.perform(post("/search/")
+                .param("keyword", keyword))
+                .andExpect(view().name("search/view"))
+                .andExpect(content().string(containsString(keyword)))
+                .andExpect(content().string(containsString(firstName1)))
+                .andExpect(content().string(not(containsString(firstName2))));
     }
 
 }

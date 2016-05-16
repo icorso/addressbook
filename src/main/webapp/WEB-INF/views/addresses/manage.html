@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
-          type="text/css" rel="stylesheet" media="screen,projection"
-          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"
-            th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}"></script>
-</head>
-
+<head th:include="fragments/header :: head">&nbsp;</head>
 <body>
-
-<div th:include="fragments/header :: header">&nbsp;</div>
+<div th:include="fragments/header :: menu">&nbsp;</div>
 
 <table>
     <thead>
@@ -36,13 +25,13 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <input id="address.id" type="hidden" th:field="${address.id}"/>
-                            <input id="city" type="text" th:field="*{city}"/>
+                            <input id="city" type="text" length="30" th:field="*{city}"/>
                             <label class="active" for="city"><span class="red-text">* </span>City</label>
                             <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('city')}"
                                   th:errors="*{city}">error</span>
                         </div>
                         <div class="input-field col s6">
-                            <input id="region" type="text" th:field="*{region}"/>
+                            <input id="region" type="text" length="30" th:field="*{region}"/>
                             <label class="active" for="region"><span class="red-text">* </span>Region</label>
                             <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('region')}"
                                   th:errors="*{region}">error</span>
@@ -50,7 +39,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="street" type="text" th:field="*{street}"/>
+                            <input id="street" type="text" length="30" th:field="*{street}"/>
                             <label class="active" for="street"><span class="red-text">* </span>Street</label>
                             <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('street')}"
                                   th:errors="*{street}">error</span>
@@ -74,6 +63,9 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <button class="btn-flat teal lighten-5 btn" type="submit" value="Submit">Save</button>
+                            <a th:if="${address.id} != 0"
+                               class="btn-flat red lighten-5 black-text btn modal-trigger"
+                               href="#modal_address_delete">DELETE</a>
                         </div>
                     </div>
                 </form>
@@ -82,6 +74,16 @@
     </tr>
     </tbody>
 </table>
-
+<div id="modal_address_delete" class="modal">
+    <div class="modal-content">
+        <h4>Delete address</h4>
+        <p>A you sure?</p>
+    </div>
+    <div class="modal-footer">
+        <a th:href="@{/addresses/{id}/delete(id=${address.id})}"
+           href="#!" class="modal-action modal-close btn-flat red-text">DELETE</a>
+        <a href="#!" class="modal-action modal-close btn-flat">CANCEL</a>
+    </div>
+</div>
 </body>
 </html>

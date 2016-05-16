@@ -1,91 +1,94 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
-          type="text/css" rel="stylesheet" media="screen,projection"
-          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"
-            th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}"></script>
-</head>
-
+<head th:include="fragments/header :: head">&nbsp;</head>
 <body>
-    <div th:include="fragments/header :: header">&nbsp;</div>
-    <table>
-        <thead>
-            <tr>
-                <th th:if="${person.id} eq 0">&nbsp;&nbsp;New Person</th>
-                <th th:unless="${person.id} eq 0">&nbsp;&nbsp;Edit Person</th>
-            </tr>
-        </thead>
+<div th:include="fragments/header :: menu">&nbsp;</div>
+<table>
+    <thead>
+    <tr>
+        <th th:if="${person.id} eq 0">&nbsp;&nbsp;New Person</th>
+        <th th:unless="${person.id} eq 0">&nbsp;&nbsp;Edit Person</th>
+    </tr>
+    </thead>
 
-        <tbody>
-        <tr>
-            <td>
-                <div class="row">
-                    <form action="#" class="col s12" id="update-person-form"
-                          th:object="${person}"
-                          th:method="${person.id} eq 0 ? post : put"
-                          th:action="@{${#httpServletRequest.servletPath}}">
+    <tbody>
+    <tr>
+        <td>
+            <div class="row">
+                <form action="#" class="col s12" id="update-person-form"
+                      th:object="${person}"
+                      th:method="${person.id} eq 0 ? post : put"
+                      th:action="@{${#httpServletRequest.servletPath}}">
 
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="person.address" type="hidden" th:field="${person.address}"/>
-                                <input id="first_name" type="text" th:field="*{firstName}"/>
-                                <label class="active" for="first_name"><span class="red-text">* </span>First Name</label>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="person.address" type="hidden" th:field="${person.address}"/>
+                            <input id="first_name" type="text" length="30" th:field="*{firstName}"/>
+                            <label class="active" for="first_name"><span class="red-text">* </span>First Name</label>
                                 <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('firstName')}"
                                       th:errors="*{firstName}">error</span>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="last_name" type="text" th:field="*{lastName}"/>
-                                <label class="active" for="last_name"><span class="red-text">* </span>Last Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="last_name" type="text" length="30" th:field="*{lastName}"/>
+                            <label class="active" for="last_name"><span class="red-text">* </span>Last Name</label>
                                 <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('lastName')}"
                                       th:errors="*{lastName}">error</span>
-                            </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="middle_name" type="text" th:field="*{middleName}"/>
-                                <label class="active" for="middle_name"><span class="red-text">* </span>Middle Name</label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="middle_name" type="text" length="30" th:field="*{middleName}"/>
+                            <label class="active" for="middle_name"><span class="red-text">* </span>Middle Name</label>
                                 <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('middleName')}"
                                       th:errors="*{middleName}">error</span>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="phone" type="text" th:field="*{phone}"/>
-                                <label class="active" for="phone">Phone</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="phone" type="text" th:field="*{phone}"/>
+                            <label class="active" for="phone">Phone</label>
                                 <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('phone')}"
                                       th:errors="*{phone}">error</span>
-                            </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="email" type="email" th:field="*{email}"/>
-                                <label class="active" for="email">Email</label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="email" type="email" th:field="*{email}"/>
+                            <label class="active" for="email">Email</label>
                                 <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('email')}"
                                       th:errors="*{email}">error</span>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="birthday" type="date" class="datepicker" th:field="*{birthday}"/>
-                                <label class="active" for="birthday">Birthday (DD.MM.YYYY)</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="birthday" type="date" class="datepicker" th:field="*{birthday}"/>
+                            <label class="active" for="birthday">Birthday</label>
                                 <span style="font-size: x-small; color: red" th:if="${#fields.hasErrors('birthday')}"
                                       th:errors="*{birthday}">error</span>
-                            </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <button class="btn-flat teal lighten-5 btn" type="submit" value="Submit">Save</button>
-                                <a th:if="${person.id} != 0" class="btn-flat red lighten-5 black-text btn"
-                                   th:href="@{/persons/{id}/delete(id=${person.id})}">DELETE</a>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button class="btn-flat teal lighten-5 btn" type="submit" value="Submit">Save</button>
+                            <a th:if="${person.id} != 0"
+                               class="btn-flat red lighten-5 black-text btn modal-trigger"
+                               href="#modal_person_delete">DELETE</a>
                         </div>
-                    </form>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                    </div>
+                </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div id="modal_person_delete" class="modal">
+    <div class="modal-content">
+        <h4>Delete person</h4>
+        <p>A you sure?</p>
+    </div>
+    <div class="modal-footer">
+        <a th:href="@{/persons/{id}/delete(id=${person.id})}"
+           href="#!" class="modal-action modal-close btn-flat red-text">DELETE</a>
+        <a href="#!" class="modal-action modal-close btn-flat">CANCEL</a>
+    </div>
+</div>
 </body>
+
 </html>

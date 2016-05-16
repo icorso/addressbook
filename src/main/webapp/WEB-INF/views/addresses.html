@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/webjars/materialize/0.97.6/dist/css/materialize.min.css"
-          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}" rel="stylesheet" media="screen"/>
-    <link href="/webjars/materialize/0.97.6/dist/js/materialize.min.js"
-          th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}" rel="script"/>
-</head>
-
+<head th:include="fragments/header :: head">&nbsp;</head>
 <body>
-<script src="webjars/materialize/0.97.6/dist/js/materialize.min.js"></script>
-
-<div th:include="fragments/header :: header">&nbsp;</div>
+<div th:include="fragments/header :: menu">&nbsp;</div>
 
 <table class="striped">
     <thead>

@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="screen"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
-          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}" rel="stylesheet" media="screen"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"
-          th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}" rel="script"/>
-</head>
-
+<head th:include="fragments/header :: head">&nbsp;</head>
 <body>
-
-<div th:include="fragments/header :: header">&nbsp;</div>
+<div th:include="fragments/header :: menu">&nbsp;</div>
 <p>&nbsp;</p>
 <div class="row">
     <div class="col s4">
@@ -22,8 +13,7 @@
                 <i class="large material-icons #ffebee-text">perm_identity</i>
                 <h5>Add New Person</h5>
             </a>
-            <p class="light center">We did most of the heavy lifting for you to provide a default stylings that
-                incorporate our custom components.</p>
+            <p class="light center">Here you can add a new person and only then add the address.</p>
         </div>
     </div>
     <div class="col s4">
@@ -33,8 +23,7 @@
                 <i class="large material-icons">business</i>
                 <h5>Addresses</h5>
             </a>
-            <p class="light center">By utilizing elements and principles of Material Design,
-                we were able to create a framework that focuses on User Experience.</p>
+            <p class="light center">Here you can view a list of all addresses.</p>
         </div>
     </div>
     <div class="col s4">
@@ -44,8 +33,7 @@
                 <i class="large material-icons red-text text-lighten-2">search</i>
                 <h5>Search</h5>
             </a>
-            <p class="light center">We have provided detailed documentation as well as specific code examples to help
-                new users get started.</p>
+            <p class="light center">Search can be performed by name, surname, phone, city, region, or street.</p>
         </div>
     </div>
 

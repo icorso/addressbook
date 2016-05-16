@@ -1,4 +1,31 @@
-<div th:fragment="header">
+<head th:fragment="head">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="screen"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
+          type="text/css" rel="stylesheet" media="screen,projection"
+          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}"/>
+    <script type="text/javascript" th:src="@{/webjars/jquery/2.2.3/jquery.min.js}"
+            src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" th:src="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}"
+            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.modal-trigger').leanModal();
+            $('.datepicker').pickadate({
+                format: 'dd.mm.yyyy',
+                formatSubmit: 'dd.mm/yyyy',
+                selectMonths: true,
+                selectYears: 100,
+                editable: false,
+                min: new Date(1900,1,1),
+                max: true
+            });
+        });
+    </script>
+</head>
+
+<div th:fragment="menu">
     <nav>
         <div class="nav-wrapper cyan darken-2">
             <a href="/" th:href="@{/}" class="brand-logo right">Address Book </a>

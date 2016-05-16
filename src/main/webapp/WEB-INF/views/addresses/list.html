@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
-          type="text/css" rel="stylesheet" media="screen,projection"
-          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"
-            th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}"></script>
-</head>
+<head th:include="fragments/header :: head">&nbsp;</head>
 <body>
 
-<div th:include="fragments/header :: header">&nbsp;</div>
+<div th:include="fragments/header :: menu">&nbsp;</div>
 
 <table class="table table-bordered striped">
         <thead>
@@ -42,7 +33,6 @@
             <td th:if="${address.person} != null" th:text="${address.person.firstName} + ' ' + ${address.person.lastName} + ' ' + ${address.person.middleName}|">&nbsp;</td>
             <td>
                 <a class="btn-flat teal lighten-5 btn" th:href="@{/addresses/{id}/edit(id=${address.id})}">EDIT</a>
-                <a class="btn-flat red lighten-5 black-text btn" th:href="@{/addresses/{id}/delete(id=${address.id})}">DELETE</a>
             </td>
         </tr>
         </tbody>

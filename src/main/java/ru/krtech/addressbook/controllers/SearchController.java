@@ -28,8 +28,8 @@ public class SearchController {
     @RequestMapping(value = {"/", ""}, method = RequestMethod.POST)
     public ModelAndView search(@RequestParam("keyword") String keyword) {
         ModelAndView mav = new ModelAndView("search/view");
-        mav.addObject("keyword", keyword);
-        Iterable<Person> persons = personRepository.getPersonsByKeyword(keyword);
+        mav.addObject("keyword", keyword.trim());
+        Iterable<Person> persons = personRepository.getPersonsByKeyword(keyword.trim());
         mav.addObject("persons", persons);
         return mav;
     }

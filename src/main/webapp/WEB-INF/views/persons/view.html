@@ -1,21 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
-          type="text/css" rel="stylesheet" media="screen,projection"
-          th:href="@{/webjars/materialize/0.97.6/dist/css/materialize.min.css}"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"
-            th:href="@{/webjars/materialize/0.97.6/dist/js/materialize.min.js}"></script>
-</head>
-
+<head th:include="fragments/header :: head">&nbsp;</head>
 <body>
-
-<div th:include="fragments/header :: header">&nbsp;</div>
-
+<div th:include="fragments/header :: menu">&nbsp;</div>
 <br/>
 <div class="row">
     <div class="col s6">
@@ -45,7 +33,7 @@
             </div>
             <div class="card-action">
                 <a href="#" th:href="@{/addresses/{id}/edit(id=${person.address.id})}">Edit</a>
-                <a href="#" th:href="@{/addresses/{aid}/delete(aid=${person.address.id})}">Delete</a>
+                <a class="modal-trigger" href="#modal_address_delete">DELETE</a>
             </div>
         </div>
         <div class="card blue-grey lighten-5" th:if="${person.address} eq null">
@@ -59,6 +47,16 @@
         </div>
     </div>
 </div>
-
+<div id="modal_address_delete" class="modal" th:if="${person.address} != null">
+    <div class="modal-content">
+        <h4>Delete address</h4>
+        <p>A you sure?</p>
+    </div>
+    <div class="modal-footer">
+        <a th:href="@{/addresses/{aid}/delete(aid=${person.address.id})}"
+           href="#!" class="modal-action modal-close btn-flat red-text">DELETE</a>
+        <a href="#!" class="modal-action modal-close btn-flat">CANCEL</a>
+    </div>
+</div>
 </body>
 </html>
